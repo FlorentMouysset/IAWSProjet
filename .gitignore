@@ -1,0 +1,9 @@
+*.bak
+*.class
+target
+*.settings
+*.classpath
+*.project
+*.pdf
+*.*~
+/target
