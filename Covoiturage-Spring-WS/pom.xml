@@ -5,12 +5,15 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   
-<!--   
-      <modules>
-        <module>ReleveNotes-WSRest</module>
-        <module>ScolariteClient</module>
-    </modules>
--->
+	<modules>	
+		<module>Covoiturage</module>
+		
+		
+		
+		
+		<module>Covoiturage-WS</module>
+		<module>Covoiturage-Rest-OSM</module>
+	</modules>
 
     <dependencyManagement>
         <dependencies>
@@ -38,9 +41,5 @@
         </dependencies>
     </dependencyManagement>
   
-	<modules>
-		<module>Covoiturage-WS</module>
-		<module>Covoiturage</module>
-		<module>Covoiturage-Rest-OSM</module>
-	</modules>
+
 </project>
