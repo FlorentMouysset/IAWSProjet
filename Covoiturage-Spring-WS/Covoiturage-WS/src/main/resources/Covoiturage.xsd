@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://iaws/ws/contractfirst/exempleCovoiturage" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="Ajout" type="exem:AjoutPersone" xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage"/>
+
+    <xs:complexType name="AjoutPersone">
+    <xs:sequence>
+    
+      <xs:element name="etat">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="OK"/>
+            <xs:enumeration value="KO"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      
+      <xs:element name="codeerreur">
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:enumeration value="100"/>
+            <xs:enumeration value="110"/>
+            <xs:enumeration value="200"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="xs:int" name="id" maxOccurs="1" minOccurs="1" xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage"/>
+    </xs:sequence>
+  </xs:complexType>
+
+    <xs:complexType name="PersoneType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="nom" maxOccurs="1" minOccurs="1" xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage"/>
+      <xs:element type="xs:string" name="prenom" maxOccurs="1" minOccurs="1" xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage"/>
+      <xs:element type="xs:string" name="email" maxOccurs="1" minOccurs="1" xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AdresseType">
+    <xs:sequence>
+      <xs:element type="xs:int" name="numrue" maxOccurs="1" minOccurs="1" xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+    <xs:element name="AjoutRequest" type="exem:AjoutRequestType" xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage"/>
+
+    <xs:complexType name="AjoutRequestType">
+        <xs:all>
+            <xs:element type="PersoneType" name="persone"/>
+            <xs:element type="AdresseType" name="adresse"/>
+        </xs:all>
+    </xs:complexType>
+    
+    
+    
+</xs:schema>
