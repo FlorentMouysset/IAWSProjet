@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" targetNamespace="http://iaws/ws/contractfirst/exempleCovoiturage"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="Ajout" type="exem:AjoutPersoneType"
+		xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage" />
+
+
+	<!-- retour de la méthode 'Ajout' : type complexe 'AjoutPersonne' -->
+	<xs:complexType name="AjoutPersoneType" mixed="true">
+		<xs:sequence> <!-- La sequence doit etre respecte ! -->
+			<xs:element minOccurs="0" name="codeerreur">
+			<xs:simpleType>
+				<xs:restriction base="xs:int"> <!-- codé par un type simple int et -->
+					<xs:enumeration value="100" /> <!-- et une enumeration -->
+					<xs:enumeration value="110" />
+					<xs:enumeration value="200" />
+				</xs:restriction>
+			</xs:simpleType>
+			</xs:element>
+
+		</xs:sequence>
+		<xs:attribute name="etat" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string"> <!-- codé par un type simple int et -->
+					<xs:enumeration value="KO" /> <!-- et une enumeration -->
+					<xs:enumeration value="OK" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+
+
+	</xs:complexType>
+
+
+
+</xs:schema>

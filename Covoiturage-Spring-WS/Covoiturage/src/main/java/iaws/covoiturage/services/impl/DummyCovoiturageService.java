@@ -29,7 +29,8 @@ public class DummyCovoiturageService implements CovoiturageService {
 	public List<Personne> findAllNeighborhood(Personne personne, Km rayon) {
 		List<Personne> listeVoisins = new ArrayList<Personne>();//création liste de voisin initialisé à vide
 		List<PersonneLocalise> listeTous = BDPersonnes.getAllPersonne();//récupération de la liste de toutes les personne localisée de la BD
-		CoordLongLati coordVoisin = BDPersonnes.getPersonneLocalise(personne).getCoordLongLati();//récupération des coordonnée GPS de la personne localisée de la personne simple passé en paramètre
+		BDPersonnes bd = new BDPersonnes();
+		CoordLongLati coordVoisin = bd.getPersonneLocalise(personne).getCoordLongLati();//récupération des coordonnée GPS de la personne localisée de la personne simple passé en paramètre
 		CoordLongLati coordCourante;
 		
 		for(PersonneLocalise personneCourante : listeTous){//Pour toutes les personnes localisées de la BD

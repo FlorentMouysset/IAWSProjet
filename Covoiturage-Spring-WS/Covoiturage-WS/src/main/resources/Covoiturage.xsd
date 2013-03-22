@@ -1,56 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://iaws/ws/contractfirst/exempleCovoiturage" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" targetNamespace="http://iaws/ws/contractfirst/exempleCovoiturage"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    <xs:element name="Ajout" type="exem:AjoutPersone" xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage"/>
+	<!-- ************** REPONSE *********** -->
+	<!-- Operation Ajoute personne -->
+	<xs:element name="Ajout" type="exem:AjoutPersoneType"
+		xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage" />
 
-    <xs:complexType name="AjoutPersone">
-    <xs:sequence>
-    
-      <xs:element name="etat">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="OK"/>
-            <xs:enumeration value="KO"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
-      
-      <xs:element name="codeerreur">
-        <xs:simpleType>
-          <xs:restriction base="xs:int">
-            <xs:enumeration value="100"/>
-            <xs:enumeration value="110"/>
-            <xs:enumeration value="200"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
-      <xs:element type="xs:int" name="id" maxOccurs="1" minOccurs="1" xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage"/>
-    </xs:sequence>
-  </xs:complexType>
+	<!-- retour de la méthode 'Ajout' : type complexe 'AjoutPersonne' -->
+	<xs:complexType name="AjoutPersoneType" mixed="true">
+		<xs:sequence> <!-- La sequence doit etre respecte ! -->
+			<xs:element minOccurs="0" name="codeerreur">
+			<xs:simpleType>
+				<xs:restriction base="xs:int"> <!-- codé par un type simple int et -->
+					<xs:enumeration value="100" /> <!-- et une enumeration -->
+					<xs:enumeration value="110" />
+					<xs:enumeration value="200" />
+				</xs:restriction>
+			</xs:simpleType>
+			</xs:element>
 
-    <xs:complexType name="PersoneType">
-    <xs:sequence>
-      <xs:element type="xs:string" name="nom" maxOccurs="1" minOccurs="1" xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage"/>
-      <xs:element type="xs:string" name="prenom" maxOccurs="1" minOccurs="1" xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage"/>
-      <xs:element type="xs:string" name="email" maxOccurs="1" minOccurs="1" xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage"/>
-    </xs:sequence>
-  </xs:complexType>
+		</xs:sequence>
+		<xs:attribute name="etat" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string"> <!-- codé par un type simple int et -->
+					<xs:enumeration value="KO" /> <!-- et une enumeration -->
+					<xs:enumeration value="OK" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
 
-  <xs:complexType name="AdresseType">
-    <xs:sequence>
-      <xs:element type="xs:int" name="numrue" maxOccurs="1" minOccurs="1" xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage"/>
-    </xs:sequence>
-  </xs:complexType>
-  
-    <xs:element name="AjoutRequest" type="exem:AjoutRequestType" xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage"/>
 
-    <xs:complexType name="AjoutRequestType">
-        <xs:all>
-            <xs:element type="PersoneType" name="persone"/>
-            <xs:element type="AdresseType" name="adresse"/>
-        </xs:all>
-    </xs:complexType>
-    
-    
-    
+	</xs:complexType>
+
+
+
+
+
+
+	<!-- ************** TYPES COMPLEXES *********** -->
+	<xs:complexType name="PersoneType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="nom" />
+			<xs:element type="xs:string" name="prenom" />
+
+			<xs:element name="email">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="^[a-zA-Z][0-9][a-zA-Z0-9]*@univ-tlse3.fr$" />
+						<!-- commence par une lettre puis éventuelement un chifre puis 0 ou 
+							plusieurs lettre et fini obligatoirement @univ-tlse3.fr -->
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="AdresseType">
+		<xs:sequence>
+			<xs:element type="xs:int" name="numrue"  />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<!-- ************** REQUETES *********** -->
+	<xs:element name="AjoutRequest" type="exem:AjoutRequestType"
+		xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage" />
+
+	<xs:complexType name="AjoutRequestType">
+		<xs:sequence>
+			<xs:element name="Persone" type="exem:PersoneType"
+				xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage" />
+			<xs:element name="Adresse" type="exem:AdresseType"
+				xmlns:exem="http://iaws/ws/contractfirst/exempleCovoiturage" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+
+
 </xs:schema>

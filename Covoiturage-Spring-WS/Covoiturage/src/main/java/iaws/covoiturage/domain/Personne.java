@@ -26,6 +26,23 @@ public class Personne {
 		return etatCivile;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		boolean rest = false;
+		if(obj instanceof Personne){
+			Personne personneParam = (Personne) obj;
+			if(personneParam.getAdresse().equals(adresse) &&
+					personneParam.getEmail().equals(email) &&
+					personneParam.getEtatCivile().equals(etatCivile)){
+				rest = true;
+			}
+		}
+		return rest;
+	}
+
+	
+	
+
 	
 	
 	
