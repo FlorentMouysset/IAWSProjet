@@ -1,8 +1,5 @@
 package iaws.covoiturage.services.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import iaws.covoiturage.domain.BDPersonnes;
 import iaws.covoiturage.domain.Personne;
 import iaws.covoiturage.domain.PersonneLocalise;
@@ -11,11 +8,16 @@ import iaws.covoiturage.domain.nomenclature.CoordLongLati;
 import iaws.covoiturage.domain.nomenclature.Email;
 import iaws.covoiturage.domain.nomenclature.EtatCivile;
 import iaws.covoiturage.domain.nomenclature.Km;
+import iaws.covoiturage.services.CodeErreur;
 import iaws.covoiturage.services.CovoiturageService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DummyCovoiturageService implements CovoiturageService {
 
-	public void addPersonne(EtatCivile etatCivile, Email email, Adresse adresse) {
+	public CodeErreur addPersonne(EtatCivile etatCivile, Email email, Adresse adresse) {
+		CodeErreur codeRet;
 		Personne personne = new Personne(adresse, email, etatCivile);
 		
 		CoordLongLati coordLongLati = new CoordLongLati();
@@ -24,6 +26,8 @@ public class DummyCovoiturageService implements CovoiturageService {
 		PersonneLocalise personneLocalise = new PersonneLocalise(personne, coordLongLati);
 		BDPersonnes.addPersonneInBD(personneLocalise);
 		
+		codeRet = CodeErreur.Ok;//TODO modif
+		return codeRet;
 	}
 
 	public List<Personne> findAllNeighborhood(Personne personne, Km rayon) {

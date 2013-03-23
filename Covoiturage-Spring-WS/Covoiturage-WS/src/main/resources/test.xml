@@ -1,10 +1,7 @@
-<Ajout xmlns="http://iaws/ws/contractfirst/exempleCovoiturage"
+<test
+	xmlns="http://www.w3schools.com"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://iaws/ws/contractfirst/exempleCovoiturage test.xsd"
-	etat="KO"
-	>
+	xsi:schemaLocation="http://www.w3schools.com test.xsd">
 
-  <codeerreur>200</codeerreur>
-
-
-</Ajout>
+jm45.5-@univ-tlse3.fr
+</test>

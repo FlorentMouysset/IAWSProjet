@@ -8,4 +8,21 @@
     <sws:annotation-driven/>
 
 
+    <sws:dynamic-wsdl id="covoiturage"
+                      portTypeName="Covoiturage"
+                      locationUri="/covoiturageService/"
+                      targetNamespace="http://www.univ-tlse3.fr/Services/Covoiturage">
+        <sws:xsd location="/WEB-INF/xsd/Covoiturage.xsd"/>
+    </sws:dynamic-wsdl>
+
+    <bean id="covoiturageEndPoint"
+          class="iaws.covoiturage.ws.contractfirst.CovoiturageEndpoint">
+        <constructor-arg name="covoiturageService" ref="covoiturageService"/>
+    </bean>
+    <bean id="covoiturageService"
+          class="iaws.covoiturage.services.impl.DummyCovoiturageService"/>
+
+
+
+
 </beans>

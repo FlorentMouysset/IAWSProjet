@@ -1,53 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sws="http://www.springframework.org/schema/web-services"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd">
 
+    <sws:annotation-driven/>
 
-	<parent>
-		<artifactId>Covoiturage-Spring-WS</artifactId>
-		<groupId>ProjetWS</groupId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+    <sws:dynamic-wsdl id="releveNotes"
+                      portTypeName="Scolarite"
+                      locationUri="/releveNotesService/"
+                      targetNamespace="http://iaws/ws/contractfirst/exemple">
+        <sws:xsd location="/WEB-INF/xsd/ReleveNotes.xsd"/>
+    </sws:dynamic-wsdl>
 
-	<artifactId>Covoiturage-WS</artifactId>
-	<packaging>war</packaging>
+    <bean id="releveNotesEndPoint"
+          class="iaws.relevenotes.ws.contractfirst.ReleveNotesEndpoint">
+        <constructor-arg name="releveNotesService" ref="releveNotesService"/>
+    </bean>
+    <bean id="releveNotesService"
+          class="iaws.relevenotes.services.impl.DummyReleveNotesService"/>
 
-	<name>Covoiturage-WS Spring-WS Application</name>
-	<url>http://www.springframework.org/spring-ws</url>
-	<build>
-		<finalName>Covoiturage-WS</finalName>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>tomcat-maven-plugin</artifactId>
-				<version>1.1</version>
-			</plugin>
-		</plugins>
-	</build>
-
-
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.ws</groupId>
-			<artifactId>spring-ws-core</artifactId>
-			<version>2.1.2.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.ws</groupId>
-			<artifactId>spring-ws-test</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-
-	</dependencies>
-</project>
+</beans> 

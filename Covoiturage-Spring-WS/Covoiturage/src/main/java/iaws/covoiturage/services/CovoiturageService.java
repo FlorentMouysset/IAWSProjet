@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CovoiturageService {
 
-	public void addPersonne(EtatCivile etatCivile, Email email, Adresse adresse);
+	public CodeErreur addPersonne(EtatCivile etatCivile, Email email, Adresse adresse);
 	
 	
 	public List<Personne> findAllNeighborhood(Personne personne, Km rayon);
