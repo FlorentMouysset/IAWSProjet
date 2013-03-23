@@ -7,12 +7,8 @@
   
 	<modules>	
 		<module>Covoiturage</module>
-		
-		
-		
-		
-		<module>Covoiturage-WS</module>
 		<module>Covoiturage-Rest-OSM</module>
+		<module>Covoiturage-WS</module>
 	</modules>
 
     <dependencyManagement>
