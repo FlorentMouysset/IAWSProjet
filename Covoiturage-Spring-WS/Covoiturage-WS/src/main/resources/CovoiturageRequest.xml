@@ -11,5 +11,5 @@
 		<numrue>10</numrue>
 		<numpostal>10</numpostal>
 	</Adresse>
-
+	<test>testBalise</test>
 </AjoutRequest>

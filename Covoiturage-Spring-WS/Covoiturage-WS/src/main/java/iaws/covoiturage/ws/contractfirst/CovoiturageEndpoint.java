@@ -27,23 +27,34 @@ public class CovoiturageEndpoint {
         this.releveNotesService = covoiturageService;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "CovoiturageRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "AjoutRequest")
     @ResponsePayload
-    public Element handleCovoiturageRequest(@XPathParam("/AjoutRequest/Persone/nom") String nom,
+    public Element handleAjoutRequest(@XPathParam("/AjoutRequest/Persone/nom") String nom,
     										@XPathParam("/AjoutRequest/Persone/prenom") String prenom,
     										@XPathParam("/AjoutRequest/Persone/email") String email,
                                             @XPathParam("/AjoutRequest/Adresse/numrue") Integer numRue,
-                                            @XPathParam("/AjoutRequest/Adresse/numpostal") Integer numPostal ) throws Exception {
+                                            @XPathParam("/AjoutRequest/Adresse/numpostal") Integer numPostal,
+                                            @XPathParam("/AjoutRequest/test") String testBal) throws Exception {
+
+    	System.out.println("deb handle ajout request");
+    	CodeErreur codeErreur;
+    	System.out.println( "nom :"+ nom + ".prenom :" + prenom + ".email:"  + email + ".numRue:" + numRue + ".numPostal:" + numPostal+ ".testBal:"+testBal+".");
+    	System.out.println("deb 2 handle request");
 
     	Adresse adresse = new Adresse(numRue, numPostal);
+    	
+    	System.out.println("deb handle inter -1 request");
+    	
     	Email email2 = new Email(email);
     	EtatCivile etatCivile = new EtatCivile(nom, prenom);
-    	CodeErreur codeErreur;
     	
+    	System.out.println("inter 0 handle ajout request");
     	codeErreur = releveNotesService.addPersonne(etatCivile, email2, adresse);
-    	
+    	System.out.println("inter 1 handle ajout request");
+
     	Element retour;
     	retour = GenerateResponseAjout.createResponse(codeErreur);
+    	System.out.println("fin handle ajout request");
     	return retour;
     }
 

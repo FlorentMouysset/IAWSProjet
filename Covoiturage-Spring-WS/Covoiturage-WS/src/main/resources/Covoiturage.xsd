@@ -74,6 +74,7 @@
 				xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
 			<xs:element name="Adresse" type="exem:AdresseType"
 				xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
+		<xs:element type="xs:string" name="test" />
 		</xs:sequence>
 	</xs:complexType>
 

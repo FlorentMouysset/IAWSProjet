@@ -12,6 +12,7 @@ public class Adresse {
 	}
 	public Adresse(int numRue, int numPostal) {
 		super();
+		System.out.println("Adresse construct");
 		this.numRue = numRue;
 		this.numPostal = numPostal;
 	}
