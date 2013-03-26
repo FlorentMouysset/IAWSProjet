@@ -20,7 +20,7 @@ import static org.springframework.ws.test.server.ResponseMatchers.payload;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("application-context.xml")
-public class TestIntegrationReleveNotesEndPoint {
+public class TestIntegrationCovoiturageOkEndPoint {
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -33,10 +33,15 @@ public class TestIntegrationReleveNotesEndPoint {
     }
 
     @Test
-    public void releveNotesEndpoint() throws Exception {
-        Source requestPayload = new StreamSource(new ClassPathResource("CovoiturageRequest.xml").getInputStream() );
+    public void covoiturageOkEndpoint() throws Exception {
+       System.out.println("deb test");
+    	Source requestPayload = new StreamSource(new ClassPathResource("CovoiturageRequest.xml").getInputStream() );
         Source responsePayload = new StreamSource(new ClassPathResource("Covoiturage.xml").getInputStream());
+        
         mockClient.sendRequest(withPayload(requestPayload)).
                 andExpect(payload(responsePayload));
     }
+    
+
+    
 }

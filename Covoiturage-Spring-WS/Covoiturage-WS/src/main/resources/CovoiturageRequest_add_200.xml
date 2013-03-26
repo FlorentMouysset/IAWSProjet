@@ -11,11 +11,8 @@
 	 <Adresse>
 		<numrue>1</numrue>
 		<numpostal>31500</numpostal>
-		<ville>toulouse</ville>
+		<ville>villeInconnue</ville>
 		<rue>Gaillac</rue>
 	</Adresse>
 	
-<!-- 	<test>testBalise</test> -->
-<!-- 1 Rue de Gaillac, 31500 Toulouse
- -->
 </AjoutRequest>

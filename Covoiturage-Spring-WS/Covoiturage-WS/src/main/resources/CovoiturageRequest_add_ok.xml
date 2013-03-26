@@ -1,8 +1,7 @@
 <AjoutRequest xmlns="http://www.univ-tlse3.fr/Services/Covoiturage"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.univ-tlse3.fr/Services/Covoiturage Covoiturage.xsd">
-
-
+	
 	<Persone>
 		<nom>toto</nom>
 		<prenom>dupont</prenom>
@@ -15,7 +14,4 @@
 		<rue>Gaillac</rue>
 	</Adresse>
 	
-<!-- 	<test>testBalise</test> -->
-<!-- 1 Rue de Gaillac, 31500 Toulouse
- -->
 </AjoutRequest>

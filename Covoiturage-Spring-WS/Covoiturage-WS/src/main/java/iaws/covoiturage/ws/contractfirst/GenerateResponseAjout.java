@@ -13,16 +13,19 @@ import java.io.IOException;
 
 import org.xml.sax.SAXException;
 
+
 public class GenerateResponseAjout {
 
-	protected static  Element createResponse(CodeErreur codeErreur)
+	public static  Element createResponse(CodeErreur codeErreur)
 			throws ParserConfigurationException, IOException, SAXException{
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
         // root elements
-        Document doc = docBuilder.parse(new ClassPathResource("Covoiturage").getInputStream());
+        Document doc = docBuilder.parse(new ClassPathResource("Covoiturage.xml").getInputStream());
+        System.out.println("ici generate");
         return doc.getDocumentElement();		
 	}
+
 	
 }

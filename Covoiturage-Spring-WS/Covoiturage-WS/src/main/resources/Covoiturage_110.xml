@@ -2,5 +2,5 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.univ-tlse3.fr/Services/Covoiturage Covoiturage.xsd"
 	 etat="KO">
-	<codeerreur>200</codeerreur>
+	<codeerreur>110</codeerreur>
 </Ajout>

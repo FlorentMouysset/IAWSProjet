@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:sws="http://www.springframework.org/schema/web-services"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-       http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:sws="http://www.springframework.org/schema/web-services"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+  <context:component-scan base-package="Covoiturage-Spring-WS"/>
+
 
     <sws:annotation-driven/>
-
+<!-- 
 
     <sws:dynamic-wsdl id="covoiturage"
                       portTypeName="Covoiturage"
                       locationUri="/covoiturageService/"
-                      targetNamespace="http://www.univ-tlse3.fr/Services/Covoiturage">
-        <sws:xsd location="/WEB-INF/xsd/Covoiturage.xsd"/>
+                      targetNamespace="http://www.univ-tlse3.fr/co/schemas">
+        <sws:xsd location="/WEB-INF/xsd/co.xsd"/>
     </sws:dynamic-wsdl>
 
     <bean id="covoiturageEndPoint"
@@ -23,6 +28,6 @@
           class="iaws.covoiturage.services.impl.DummyCovoiturageService"/>
 
 
-
+ -->
 
 </beans>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema attributeFormDefault="unqualified"
-	elementFormDefault="qualified" targetNamespace="http://www.univ-tlse3.fr/Services/Covoiturage"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage"
+	attributeFormDefault="unqualified" elementFormDefault="qualified"
+	targetNamespace="http://www.univ-tlse3.fr/Services/Covoiturage">
 
 	<!-- ************** REPONSE *********** -->
 	<!-- Operation Ajoute personne -->
@@ -9,23 +10,23 @@
 		xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
 
 	<!-- retour de la méthode 'Ajout' : type complexe 'AjoutPersonne' -->
-	<xs:complexType name="AjoutPersoneType" mixed="true">
-		<xs:sequence> <!-- La sequence doit etre respecte ! -->
+	<xs:complexType name="AjoutPersoneType">
+		<xs:all> <!-- La sequence doit etre respecte ! -->
 			<xs:element minOccurs="0" name="codeerreur">
-			<xs:simpleType>
-				<xs:restriction base="xs:int"> <!-- codé par un type simple int et -->
-					<xs:enumeration value="100" /> <!-- et une enumeration -->
-					<xs:enumeration value="110" />
-					<xs:enumeration value="200" />
-				</xs:restriction>
-			</xs:simpleType>
+				<xs:simpleType>
+					<xs:restriction base="xs:int"> <!-- codé par un type simple int et -->
+						<xs:enumeration value="100" /> <!-- et une enumeration -->
+						<xs:enumeration value="110" />
+						<xs:enumeration value="200" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 
-		</xs:sequence>
+		</xs:all>
 		<xs:attribute name="etat" use="required">
 			<xs:simpleType>
-				<xs:restriction base="xs:string"> <!-- codé par un type simple int et -->
-					<xs:enumeration value="KO" /> <!-- et une enumeration -->
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="KO" />
 					<xs:enumeration value="OK" />
 				</xs:restriction>
 			</xs:simpleType>
@@ -46,9 +47,9 @@
 			<xs:element name="email">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
-						<xs:pattern value="[a-zA-Z][a-zA-Z0-9\-\.]*@univ-tlse3.fr" /> 
-						<!-- commence par une lettre puis éventuelement des chifres ou 
-							des lettres et fini obligatoirement @univ-tlse3.fr -->
+						<xs:pattern value="[a-zA-Z][a-zA-Z0-9\-\.]*@univ-tlse3.fr" />
+						<!-- commence par une lettre puis éventuelement des chifres ou des 
+							lettres et fini obligatoirement @univ-tlse3.fr -->
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
@@ -59,8 +60,10 @@
 
 	<xs:complexType name="AdresseType">
 		<xs:sequence>
-			<xs:element type="xs:int" name="numrue"  />
-			<xs:element type="xs:int" name="numpostal"  />
+			<xs:element type="xs:int" name="numrue" />
+			<xs:element type="xs:int" name="numpostal" />
+			<xs:element type="xs:string" name="ville" />
+			<xs:element type="xs:string" name="rue" />
 		</xs:sequence>
 	</xs:complexType>
 
@@ -74,7 +77,6 @@
 				xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
 			<xs:element name="Adresse" type="exem:AdresseType"
 				xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
-		<xs:element type="xs:string" name="test" />
 		</xs:sequence>
 	</xs:complexType>
 
