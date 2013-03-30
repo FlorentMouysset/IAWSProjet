@@ -21,7 +21,6 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-
 		</xs:all>
 		<xs:attribute name="etat" use="required">
 			<xs:simpleType>
@@ -31,6 +30,7 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
+    <xs:attribute type="xs:int" name="id" use="optional"/>
 	</xs:complexType>
 
 
@@ -77,6 +77,17 @@
 				xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
 			<xs:element name="Adresse" type="exem:AdresseType"
 				xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:element name="VoisinsRequest" type="exem:VoisinsRequestType"
+		xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
+
+	<xs:complexType name="VoisinsRequestType">
+		<xs:sequence>
+			<xs:element type="xs:int" name="idUtil" />
+			<xs:element type="xs:float" name="rayon" />
 		</xs:sequence>
 	</xs:complexType>
 

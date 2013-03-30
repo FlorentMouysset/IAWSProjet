@@ -1,7 +1,5 @@
 package iaws.covoiturage.ws.contractfirst;
 
-import iaws.covoiturage.services.CodeErreur;
-
 import org.w3c.dom.Element;
 import org.springframework.core.io.ClassPathResource;
 import org.w3c.dom.Document;
@@ -16,7 +14,7 @@ import org.xml.sax.SAXException;
 
 public class GenerateResponseAjout {
 
-	public static  Element createResponse(CodeErreur codeErreur)
+	public static  Element createResponse(int codeErreur, int userId)
 			throws ParserConfigurationException, IOException, SAXException{
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = docFactory.newDocumentBuilder();

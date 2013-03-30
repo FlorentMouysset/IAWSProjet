@@ -31,16 +31,14 @@
 			<groupId>ProjetWS</groupId>
 			<artifactId>Covoiturage</artifactId>
 		</dependency>
-	<!-- 	<dependency>
-			<groupId>jdom</groupId>
-			<artifactId>jdom</artifactId>
-			<version>1.0</version>
-		</dependency>
+		
 		<dependency>
-			<groupId>jaxen</groupId>
-			<artifactId>jaxen</artifactId>
-			<version>1.1</version>
-		</dependency> -->
+			<groupId>ProjetWS</groupId>
+			<artifactId>Covoiturage-Rest-OSM</artifactId>
+		</dependency>
+		<!-- <dependency> <groupId>jdom</groupId> <artifactId>jdom</artifactId> 
+			<version>1.0</version> </dependency> <dependency> <groupId>jaxen</groupId> 
+			<artifactId>jaxen</artifactId> <version>1.1</version> </dependency> -->
 	</dependencies>
 	<build>
 		<finalName>Covoiturage-WS</finalName>

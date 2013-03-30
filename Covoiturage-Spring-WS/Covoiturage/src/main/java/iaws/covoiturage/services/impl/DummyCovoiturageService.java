@@ -8,26 +8,36 @@ import iaws.covoiturage.domain.nomenclature.CoordLongLati;
 import iaws.covoiturage.domain.nomenclature.Email;
 import iaws.covoiturage.domain.nomenclature.EtatCivile;
 import iaws.covoiturage.domain.nomenclature.Km;
-import iaws.covoiturage.services.CodeErreur;
 import iaws.covoiturage.services.CovoiturageService;
+import iaws.covoiturage.services.ExceptionAdresseInvalide;
+import iaws.covoiturage.services.ExceptionMailDejaUtil;
+import iaws.covoiturage.services.ExceptionMailInvalide;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DummyCovoiturageService implements CovoiturageService {
 
-	public CodeErreur addPersonne(EtatCivile etatCivile, Email email, Adresse adresse) {
-		CodeErreur codeRet;
+	public int addPersonne(EtatCivile etatCivile, Email email, Adresse adresse) 
+	throws ExceptionMailDejaUtil, ExceptionMailInvalide, ExceptionAdresseInvalide{
+		int userId=-1;
+		
+		//Vérifie que l'adresse email n'existe pas déjà dans la bd => si true alors dejà attribué
+		if(BDPersonnes.mailExisteBD(email)){
+			throw new ExceptionMailDejaUtil();
+		}else if(BDPersonnes.mailExisteSI(email)==false){//vérifie que l'email existe dans le systeme d'information de la fac
+			throw new ExceptionMailInvalide();
+		}
+		
 		Personne personne = new Personne(adresse, email, etatCivile);
 		
-		CoordLongLati coordLongLati = new CoordLongLati();
+		CoordLongLati coordLongLati = new CoordLongLati(1,1);
 		//TODO ajouter les coordonnées longitude + latidude
 		//personne.setCoordLongLati(coordLongLati);
 		PersonneLocalise personneLocalise = new PersonneLocalise(personne, coordLongLati);
 		BDPersonnes.addPersonneInBD(personneLocalise);
 		
-		codeRet = CodeErreur.Ok;//TODO modif
-		return codeRet;
+		return userId;
 	}
 
 	public List<Personne> findAllNeighborhood(Personne personne, Km rayon) {

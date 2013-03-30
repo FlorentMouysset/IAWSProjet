@@ -1,5 +1,7 @@
 package iaws.covoiturage.domain;
 
+import iaws.covoiturage.domain.nomenclature.Email;
+
 import java.util.List;
 
 public class BDPersonnes {
@@ -31,6 +33,18 @@ public class BDPersonnes {
 		}
 		
 		return rest;
+	}
+
+
+	public static boolean mailExisteBD(Email email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	public static boolean mailExisteSI(Email email) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 	
 }

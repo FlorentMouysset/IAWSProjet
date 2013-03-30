@@ -6,7 +6,8 @@ import iaws.covoiturage.domain.nomenclature.EtatCivile;
 
 public interface CovoiturageService {
 
-	public CodeErreur addPersonne(EtatCivile etatCivile, Email email, Adresse adresse);
+	public int addPersonne(EtatCivile etatCivile, Email email, Adresse adresse) 
+	throws ExceptionMailDejaUtil, ExceptionMailInvalide, ExceptionAdresseInvalide;
 	
 	
 	//public List<Personne> findAllNeighborhood(Personne personne, Km rayon);

@@ -13,5 +13,4 @@
     </bean>
     <bean id="covoiturageService"
           class="iaws.covoiturage.services.impl.DummyCovoiturageService"/>
-
 </beans>
