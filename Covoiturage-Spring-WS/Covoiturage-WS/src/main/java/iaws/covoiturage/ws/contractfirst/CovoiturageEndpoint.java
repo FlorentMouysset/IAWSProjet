@@ -1,13 +1,17 @@
 package iaws.covoiturage.ws.contractfirst;
 
 
+import iaws.covoiturage.domain.Personne;
 import iaws.covoiturage.domain.nomenclature.Adresse;
 import iaws.covoiturage.domain.nomenclature.Email;
 import iaws.covoiturage.domain.nomenclature.EtatCivile;
 import iaws.covoiturage.services.CovoiturageService;
-import iaws.covoiturage.services.ExceptionAdresseInvalide;
 import iaws.covoiturage.services.ExceptionMailDejaUtil;
 import iaws.covoiturage.services.ExceptionMailInvalide;
+
+import java.util.List;
+
+import nomenclatureOSMServices.Km;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -15,58 +19,64 @@ import org.springframework.ws.server.endpoint.annotation.Namespace;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import org.springframework.ws.server.endpoint.annotation.XPathParam;
-import org.w3c.dom.Element;
+//import org.w3c.dom.Element;
+import org.jdom2.Element;
+
+import exceptionsOSMServices.ExceptionAdresseInvalide;
+import exceptionsOSMServices.ExceptionInternalError;
 
 /**
  */
 @Endpoint
 public class CovoiturageEndpoint {
-    private CovoiturageService releveNotesService;
+    private CovoiturageService covoiturageService;
 
     private static final String NAMESPACE_URI = "http://www.univ-tlse3.fr/Services/Covoiturage";
     
     @Autowired
     public CovoiturageEndpoint(CovoiturageService covoiturageService) {
-        this.releveNotesService = covoiturageService;
+        this.covoiturageService = covoiturageService;
         System.out.println("constru endpoint");
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "AjoutRequest")
     @Namespace(prefix = "s", uri = NAMESPACE_URI)
     @ResponsePayload
-    public Element handleAjoutRequest(@XPathParam("/s:AjoutRequest/s:Persone/s:nom") String nom,
-    										@XPathParam("/s:AjoutRequest/s:Persone/s:prenom") String prenom,
-    										@XPathParam("/s:AjoutRequest/s:Persone/s:email") String email,
+    public Element handleAjoutRequest(@XPathParam("/s:AjoutRequest/s:Personne/s:nom") String nom,
+    										@XPathParam("/s:AjoutRequest/s:Personne/s:prenom") String prenom,
+    										@XPathParam("/s:AjoutRequest/s:Personne/s:email") String emailStr,
                                             @XPathParam("/s:AjoutRequest/s:Adresse/s:numrue") Integer numRue,
                                             @XPathParam("/s:AjoutRequest/s:Adresse/s:numpostal") Integer numPostal,
                                             @XPathParam("/s:AjoutRequest/s:Adresse/s:rue") String nomRue,
                                             @XPathParam("/s:AjoutRequest/s:Adresse/s:ville") String nomVile)
                                             throws Exception {
 
-    	System.out.println("deb handle ajout request");
-    	int userId = -1;
-    	int codeErreur=-1;
-    	System.out.println( "nom :"+ nom + ".prenom :" + prenom + ".email:"  + email + ".numRue:" + numRue + ".numPostal:" + numPostal+".");
-    	System.out.println("deb 2 handle request");
+    	Integer userId = -1;
+    	Integer codeErreur=-1;
+    	System.out.println( "nom :"+ nom + ".prenom :" + prenom + ".email:"  + emailStr + ".numRue:" + numRue + ".numPostal:" + numPostal+".");
+//    	System.out.println("deb 2 handle request");
 
     	Adresse adresse = new Adresse(numRue, numPostal, nomRue, nomVile);
     	
-    	System.out.println("deb handle inter -1 request");
+//    	System.out.println("deb handle inter -1 request");
     	
-    	Email email2 = new Email(email);
+    	Email email = new Email(emailStr);
     	EtatCivile etatCivile = new EtatCivile(nom, prenom);
+    	Personne personne = new Personne(adresse, email, etatCivile);
     	
-    	System.out.println("inter 0 handle ajout request");
+//    	System.out.println("inter 0 handle ajout request");
     	try{
-    		userId = releveNotesService.addPersonne(etatCivile, email2, adresse);
+    		userId = covoiturageService.addPersonne(personne);
     	}catch(ExceptionMailDejaUtil e){
     		codeErreur= 100;
     	}catch(ExceptionMailInvalide e){
     		codeErreur= 110;
     	}catch(ExceptionAdresseInvalide e){
     		codeErreur=200;
+    	}catch(ExceptionInternalError e){
+    		codeErreur=120;
     	}
-    	System.out.println("inter 1 handle ajout request");
+    	System.out.println("handle fin ajout : "+ userId + " "+ codeErreur);
 
     	Element retour;
     	retour = GenerateResponseAjout.createResponse(codeErreur, userId);
@@ -74,4 +84,28 @@ public class CovoiturageEndpoint {
     	return retour;
     }
 
+    
+    
+    
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "VoisinsRequest")
+    @Namespace(prefix = "s", uri = NAMESPACE_URI)
+    @ResponsePayload
+    public Element handleVoisinsRequest(@XPathParam("/s:VoisinsRequest/s:idUtil") Integer idUtil,
+    										@XPathParam("/s:VoisinsRequest/s:rayon") Double rayon)
+    									    throws Exception {
+
+    	System.out.println("deb handle voisins request");
+    	System.out.println("> " + idUtil + " " + rayon);
+    	List<Personne> personnes = null;
+    	
+    	personnes = covoiturageService.findAllNeighborhood(idUtil, new Km(rayon)); 
+    	
+    	Element retour=null;
+		retour = GenerateResponseVoisins.createResponse(personnes);
+    	
+    	return retour;
+    }
+
+    
+    
 }

@@ -1,15 +1,18 @@
 package iaws.covoiturage.services;
 
-import iaws.covoiturage.domain.nomenclature.Adresse;
-import iaws.covoiturage.domain.nomenclature.Email;
-import iaws.covoiturage.domain.nomenclature.EtatCivile;
+import iaws.covoiturage.domain.Personne;
+import java.util.List;
+
+import nomenclatureOSMServices.Km;
+import exceptionsOSMServices.ExceptionAdresseInvalide;
+import exceptionsOSMServices.ExceptionInternalError;
 
 public interface CovoiturageService {
 
-	public int addPersonne(EtatCivile etatCivile, Email email, Adresse adresse) 
-	throws ExceptionMailDejaUtil, ExceptionMailInvalide, ExceptionAdresseInvalide;
+	public Integer addPersonne(Personne personne) 
+	throws ExceptionMailDejaUtil, ExceptionMailInvalide, ExceptionAdresseInvalide, ExceptionInternalError;
 	
-	
-	//public List<Personne> findAllNeighborhood(Personne personne, Km rayon);
+	 
+	public List<Personne> findAllNeighborhood(Integer personneID, Km rayon) throws ExceptionInternalError;
 	
 }

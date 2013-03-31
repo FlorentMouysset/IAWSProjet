@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PersonnesLocalisees>
+
+	<personnelocalisee>
+		<Personne>
+			<nom>nom0</nom>
+			<prenom>prenom0</prenom>
+			<email>mail0@univ-tlse3.fr</email>
+		</Personne>
+		<Adresse>
+			<numrue>0</numrue>
+			<numpostal>1</numpostal>
+			<ville>ville0</ville>
+			<rue>rue0</rue>
+		</Adresse>
+		<LonLat>
+			<lat>0.1</lat>
+			<lon>0.11</lon>
+		</LonLat>
+		<id>1</id>
+	</personnelocalisee>
+	
+</PersonnesLocalisees>
+	
+	

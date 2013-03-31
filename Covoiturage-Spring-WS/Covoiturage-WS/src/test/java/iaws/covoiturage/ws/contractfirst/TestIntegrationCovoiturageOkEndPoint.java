@@ -1,5 +1,8 @@
 package iaws.covoiturage.ws.contractfirst;
 
+import iaws.covoiturage.domain.BDPersonnes;
+
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +12,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.test.server.MockWebServiceClient;
+
+import exceptionsOSMServices.ExceptionInternalError;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -32,11 +37,21 @@ public class TestIntegrationCovoiturageOkEndPoint {
         mockClient = MockWebServiceClient.createClient(applicationContext);
     }
 
+    @After
+    public void cleanBD(){
+    	BDPersonnes bd = null;
+		try {
+			bd = BDPersonnes.getInstance("bd.xml");
+		} catch (ExceptionInternalError e) {
+			e.printStackTrace();
+		}
+    	bd.deletePersonneInBD(5);
+    }
+    
     @Test
     public void covoiturageOkEndpoint() throws Exception {
-       System.out.println("deb test");
-    	Source requestPayload = new StreamSource(new ClassPathResource("CovoiturageRequest.xml").getInputStream() );
-        Source responsePayload = new StreamSource(new ClassPathResource("Covoiturage.xml").getInputStream());
+    	Source requestPayload = new StreamSource(new ClassPathResource("CovoiturageRequest_add_ok.xml").getInputStream() );
+        Source responsePayload = new StreamSource(new ClassPathResource("Covoiturage_ok.xml").getInputStream());
         
         mockClient.sendRequest(withPayload(requestPayload)).
                 andExpect(payload(responsePayload));

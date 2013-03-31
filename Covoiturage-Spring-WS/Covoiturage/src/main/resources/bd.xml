@@ -1,0 +1,45 @@
+<PersonnesLocalisees xmlns="http://www.univ-tlse3.fr/Services/Covoiturage"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.univ-tlse3.fr/Services/Covoiturage bd.xsd">
+
+
+	<personnelocalisee>
+		<Personne>
+			<nom>toto</nom>
+			<prenom>dupont</prenom>
+			<email>toto.dupont@univ-tlse3.fr</email>
+		</Personne>
+		<Adresse>
+			<numrue>1</numrue>
+			<numpostal>31500</numpostal>
+			<ville>toulouse</ville>
+			<rue>Gaillac</rue>
+		</Adresse>
+		<LonLat>
+			<lat>1.2</lat>
+			<lon>2.3</lon>
+		</LonLat>
+		<id>0</id>
+	</personnelocalisee>
+
+	<personnelocalisee>
+		<Personne>
+			<nom>toto</nom>
+			<prenom>dupont</prenom>
+			<email>toto.dupont@univ-tlse3.fr</email>
+		</Personne>
+		<Adresse>
+			<numrue>1</numrue>
+			<numpostal>31500</numpostal>
+			<ville>toulouse</ville>
+			<rue>Gaillac</rue>
+		</Adresse>
+		<LonLat>
+			<lat>1.2</lat>
+			<lon>2.3</lon>
+		</LonLat>
+		<id>1</id>	
+	</personnelocalisee>
+	
+	
+</PersonnesLocalisees>

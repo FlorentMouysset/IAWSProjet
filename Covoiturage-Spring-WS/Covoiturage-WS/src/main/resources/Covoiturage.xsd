@@ -4,13 +4,14 @@
 	attributeFormDefault="unqualified" elementFormDefault="qualified"
 	targetNamespace="http://www.univ-tlse3.fr/Services/Covoiturage">
 
-	<!-- ************** REPONSE *********** -->
-	<!-- Operation Ajoute personne -->
-	<xs:element name="Ajout" type="exem:AjoutPersoneType"
+
+	<!-- ************************** REPONSE ************************** -->
+	<!-- _______ Operation Ajoute personne _______ -->
+	<xs:element name="Ajout" type="exem:AjoutPersonneType"
 		xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
 
 	<!-- retour de la méthode 'Ajout' : type complexe 'AjoutPersonne' -->
-	<xs:complexType name="AjoutPersoneType">
+	<xs:complexType name="AjoutPersonneType">
 		<xs:all> <!-- La sequence doit etre respecte ! -->
 			<xs:element minOccurs="0" name="codeerreur">
 				<xs:simpleType>
@@ -30,20 +31,40 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
-    <xs:attribute type="xs:int" name="id" use="optional"/>
+		<xs:attribute type="xs:int" name="id" use="optional" />
+	</xs:complexType>
+
+
+	<!-- _______ Operation recherche voisins _______ -->
+	<xs:element name="Voisins" type="exem:VoisinsType"
+		xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
+
+	<xs:complexType name="VoisinsType">
+		<xs:sequence>
+			<xs:element type="exem:PersonneEtAdresseType" name="voisin"
+				minOccurs="0" maxOccurs="unbounded" xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<!-- ************************** TYPES COMPLEXES ************************** -->
+
+	<xs:complexType name="PersonneEtAdresseType">
+		<xs:sequence>
+			<xs:element type="exem:PersonneType" name="personne" />
+			<xs:element type="exem:AdresseType" name="adresse" />
+		</xs:sequence>
 	</xs:complexType>
 
 
 
 
 
-
-	<!-- ************** TYPES COMPLEXES *********** -->
-	<xs:complexType name="PersoneType">
+	<xs:complexType name="PersonneType">
 		<xs:sequence>
 			<xs:element type="xs:string" name="nom" />
 			<xs:element type="xs:string" name="prenom" />
-
 			<xs:element name="email">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
@@ -53,10 +74,8 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-
 		</xs:sequence>
 	</xs:complexType>
-
 
 	<xs:complexType name="AdresseType">
 		<xs:sequence>
@@ -67,13 +86,15 @@
 		</xs:sequence>
 	</xs:complexType>
 
-	<!-- ************** REQUETES *********** -->
+
+	<!-- ************************** REQUETES ************************** -->
+	<!-- _______ Ajout de membre _______ -->
 	<xs:element name="AjoutRequest" type="exem:AjoutRequestType"
 		xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
 
 	<xs:complexType name="AjoutRequestType">
 		<xs:sequence>
-			<xs:element name="Persone" type="exem:PersoneType"
+			<xs:element name="Personne" type="exem:PersonneType"
 				xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
 			<xs:element name="Adresse" type="exem:AdresseType"
 				xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
@@ -81,6 +102,7 @@
 	</xs:complexType>
 
 
+	<!-- _______ Recherche de voisins _______ -->
 	<xs:element name="VoisinsRequest" type="exem:VoisinsRequestType"
 		xmlns:exem="http://www.univ-tlse3.fr/Services/Covoiturage" />
 

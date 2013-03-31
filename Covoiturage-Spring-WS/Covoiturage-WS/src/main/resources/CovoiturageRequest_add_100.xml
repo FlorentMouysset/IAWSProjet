@@ -2,17 +2,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.univ-tlse3.fr/Services/Covoiturage Covoiturage.xsd">
 
-
-	<Persone>
-		<nom>toto</nom>
-		<prenom>dupont</prenom>
-		<email>deja.inscrit@univ-tlse3.fr</email>
-	</Persone>
-	 <Adresse>
-		<numrue>1</numrue>
-		<numpostal>31500</numpostal>
-		<ville>toulouse</ville>
-		<rue>Gaillac</rue>
-	</Adresse>
-	
+	<Personne>
+      <nom>nom5</nom>
+      <prenom>prenom5</prenom>
+      <email>mail4@univ-tlse3.fr</email>
+    </Personne>
+    <Adresse>
+      <numrue>10</numrue>
+      <numpostal>31062</numpostal>
+      <ville>Toulouse</ville>
+      <rue>Chemin des Izards</rue>
+    </Adresse>
+    
 </AjoutRequest>

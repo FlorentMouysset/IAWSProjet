@@ -1,5 +1,6 @@
 package iaws.covoiturage.services;
 
+@SuppressWarnings("serial")
 public class ExceptionMailInvalide extends Exception {
 
 	
