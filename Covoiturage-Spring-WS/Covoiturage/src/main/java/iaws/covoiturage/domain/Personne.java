@@ -22,6 +22,13 @@ public class Personne {
 		this.etatCivile = etatCivile;
 	}
 	
+	public Personne(Personne personne) {
+		super();
+		this.adresse = personne.getAdresse();
+		this.email = personne.getEmail();
+		this.etatCivile = personne.getEtatCivile();
+	}
+
 	public Adresse getAdresse() {
 		return adresse;
 	}

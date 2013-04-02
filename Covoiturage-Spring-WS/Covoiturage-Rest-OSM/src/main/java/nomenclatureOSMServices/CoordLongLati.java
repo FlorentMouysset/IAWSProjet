@@ -12,9 +12,7 @@ public class CoordLongLati {
 		this.lat = lat;
 	}
 
-	
-	
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -23,8 +21,6 @@ public class CoordLongLati {
 		result = prime * result + ((lon == null) ? 0 : lon.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -72,12 +68,6 @@ public class CoordLongLati {
 		Double lonRad = Math.PI * coord.lon /180;
 		Double res =  6371 * Math.acos( Math.cos(latRadThis) * Math.cos(latRad) * Math.cos(lonRadThis-lonRad)+Math.sin(latRadThis) *Math.sin(latRad));
 		return new Km(res);
-//		System.out.println(coord.lat + " " + this.lat);
-//		System.out.println(coord.lat - this.lat);
-//		System.out.println(Math.pow((coord.lat - this.lat), 2));
-//		System.out.println(Math.pow((coord.lat - this.lat), 2) + Math.pow((coord.lon - this.lon), 1));
-//		System.out.println(Math.sqrt( Math.pow((coord.lat - this.lat), 2) + Math.pow((coord.lon - this.lon), 1)));
-//		return new Km( Math.sqrt((coord.lat - this.lat) + (coord.lon - this.lon)));
 	}
 	
 }

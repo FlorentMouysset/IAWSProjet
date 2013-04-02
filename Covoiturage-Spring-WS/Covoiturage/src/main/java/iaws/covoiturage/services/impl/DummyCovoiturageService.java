@@ -30,7 +30,6 @@ public class DummyCovoiturageService implements CovoiturageService {
 	}
 	
 	public DummyCovoiturageService() throws ExceptionInternalError{
-	//	System.out.println(">>>>>> ICI CONST DUMMY !!");
 		createBD("bd.xml");
 	}
 	
@@ -60,9 +59,7 @@ public class DummyCovoiturageService implements CovoiturageService {
 		Integer userId=-1;
 		Email email = personne.getEmail();
 		Adresse adresse = personne.getAdresse();
-		
-		System.out.println("-deb ajout " + personne);
-		
+
 		//Vérifie que l'adresse email n'existe pas déjà dans la bd => si true alors dejà attribué
 		if(bd.mailExisteBD(email)){
 			System.out.println("email existe dejà");
@@ -71,16 +68,13 @@ public class DummyCovoiturageService implements CovoiturageService {
 			System.out.println("email invalide");
 			throw new ExceptionMailInvalide("L'adresse email est invalide");
 		}
-		System.out.println("ok verif mail");
 		
 		//Récupere les coordonnées par OSM
 		CoordLongLati coordLongLati = OSMServices.getCoord(adresse.getNomRue(), adresse.getNomVille(), adresse.getNumRue());
-		System.out.println("ok verif OSM");
 		
 		//Crée une personne localisé
 		PersonneLocalise personneLocalise = new PersonneLocalise(personne, coordLongLati);
 		userId = bd.addPersonneInBD(personneLocalise);//l'ajoute à la BD
-		System.out.println("ok fin add personne id = " + userId);
 		return userId;
 	}
 

@@ -53,18 +53,12 @@ public class CovoiturageEndpoint {
 
     	Integer userId = -1;
     	Integer codeErreur=-1;
-    	System.out.println( "nom :"+ nom + ".prenom :" + prenom + ".email:"  + emailStr + ".numRue:" + numRue + ".numPostal:" + numPostal+".");
-//    	System.out.println("deb 2 handle request");
 
     	Adresse adresse = new Adresse(numRue, numPostal, nomRue, nomVile);
-    	
-//    	System.out.println("deb handle inter -1 request");
-    	
     	Email email = new Email(emailStr);
     	EtatCivile etatCivile = new EtatCivile(nom, prenom);
     	Personne personne = new Personne(adresse, email, etatCivile);
     	
-//    	System.out.println("inter 0 handle ajout request");
     	try{
     		userId = covoiturageService.addPersonne(personne);
     	}catch(ExceptionMailDejaUtil e){
@@ -76,11 +70,9 @@ public class CovoiturageEndpoint {
     	}catch(ExceptionInternalError e){
     		codeErreur=120;
     	}
-    	System.out.println("handle fin ajout : "+ userId + " "+ codeErreur);
 
     	Element retour;
     	retour = GenerateResponseAjout.createResponse(codeErreur, userId);
-    	System.out.println("fin handle ajout request");
     	return retour;
     }
 
@@ -94,15 +86,9 @@ public class CovoiturageEndpoint {
     										@XPathParam("/s:VoisinsRequest/s:rayon") Double rayon)
     									    throws Exception {
 
-    	System.out.println("deb handle voisins request");
-    	System.out.println("> " + idUtil + " " + rayon);
     	List<Personne> personnes = null;
-    	
     	personnes = covoiturageService.findAllNeighborhood(idUtil, new Km(rayon)); 
-    	
-    	Element retour=null;
-		retour = GenerateResponseVoisins.createResponse(personnes);
-    	
+    	Element retour = GenerateResponseVoisins.createResponse(personnes);
     	return retour;
     }
 

@@ -11,7 +11,7 @@
 
 
     <sws:annotation-driven/>
-<!-- 
+ 
 
     <sws:dynamic-wsdl id="covoiturage"
                       portTypeName="Covoiturage"
@@ -28,6 +28,6 @@
           class="iaws.covoiturage.services.impl.DummyCovoiturageService"/>
 
 
- -->
+
 
 </beans>

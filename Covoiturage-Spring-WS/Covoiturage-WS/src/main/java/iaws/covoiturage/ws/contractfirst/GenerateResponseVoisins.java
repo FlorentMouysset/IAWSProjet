@@ -3,7 +3,6 @@ package iaws.covoiturage.ws.contractfirst;
 import iaws.covoiturage.domain.Personne;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -12,30 +11,15 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
 import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.Format;
-import org.jdom2.output.XMLOutputter;
 import org.xml.sax.SAXException;
 
 public class GenerateResponseVoisins {
-
-//	public static  Element createResponse(List<Personne> personnes)
-//			throws ParserConfigurationException, IOException, SAXException{
-//        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-//        DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-//
-//        // root elements
-//        Document doc = docBuilder.parse(new ClassPathResource("CovoiturageVoisins_Vide.xml").getInputStream());
-//        System.out.println("ici generate");
-//        return doc.getDocumentElement();		
-//	}
 
 	public static  Element createResponse(List<Personne> personneListe)
 			throws ParserConfigurationException, IOException, SAXException{
 		
 		Element root ;
 
-		System.out.println(">>> générateur : " + " " + personneListe.size());
-				
 		SAXBuilder bsx = new SAXBuilder();
 		org.jdom2.Document document = null;
     	File file = new File("src/main/resources/ModelCovoiturageVoisins.xml");
@@ -47,8 +31,7 @@ public class GenerateResponseVoisins {
 		root = document.getRootElement();
 
 		Namespace namespace = Namespace.getNamespace("http://www.univ-tlse3.fr/Services/Covoiturage");
-		for(Personne currentPersonne : personneListe){
-	
+		for(Personne currentPersonne : personneListe){	
 			Element voisin = new Element("voisin", namespace);
 			Element personneElem = new Element("personne", namespace);
 			personneElem.addContent(new Element("nom",namespace).addContent(currentPersonne.getNom()));
@@ -64,17 +47,7 @@ public class GenerateResponseVoisins {
 
 			root.addContent(voisin);			
 		}
-		
-		//TMP>>>
-		try {
-			XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
-			sortie.output(document, new FileOutputStream("src/main/resources/verif.xml"));
-		} catch (java.io.IOException e) {
-			e.printStackTrace();//TODO
-		}
-
-		//<<<<TMP
-		
+				
         return root;		
 	}
 

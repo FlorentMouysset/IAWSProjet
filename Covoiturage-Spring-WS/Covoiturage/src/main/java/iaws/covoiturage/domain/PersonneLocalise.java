@@ -1,18 +1,16 @@
 package iaws.covoiturage.domain;
 
-import nomenclatureOSMServices.CoordLongLati;
 import iaws.covoiturage.domain.nomenclature.Adresse;
 import iaws.covoiturage.domain.nomenclature.Email;
 import iaws.covoiturage.domain.nomenclature.EtatCivile;
+import nomenclatureOSMServices.CoordLongLati;
 
-public class PersonneLocalise {
-
+public class PersonneLocalise extends Personne {
 
 	private CoordLongLati coordLongLati;
-	private Personne personne;
 	
 	public PersonneLocalise(Adresse adresse, Email email, EtatCivile etatCivile, CoordLongLati coordLongLati) {
-		personne = new Personne(adresse, email, etatCivile);
+		super(adresse, email, etatCivile);
 		this.coordLongLati = coordLongLati;
 		
 	}
@@ -20,27 +18,28 @@ public class PersonneLocalise {
 	@Override
 	public String toString() {
 		return "PersonneLocalise [coordLongLati=" + coordLongLati
-				+ ", personne=" + personne + "]";
+				+ ", personne=" + super.toString() + "]";
 	}
 
+	public PersonneLocalise(Personne personne, CoordLongLati coordLongLati ){
+		super(personne);
+		this.coordLongLati = coordLongLati;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result
 				+ ((coordLongLati == null) ? 0 : coordLongLati.hashCode());
-		result = prime * result
-				+ ((personne == null) ? 0 : personne.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -50,21 +49,9 @@ public class PersonneLocalise {
 				return false;
 		} else if (!coordLongLati.equals(other.coordLongLati))
 			return false;
-		if (personne == null) {
-			if (other.personne != null)
-				return false;
-		} else if (!personne.equals(other.personne))
-			return false;
 		return true;
 	}
 
-
-
-	public PersonneLocalise(Personne personne, CoordLongLati coordLongLati ){
-		this.personne = personne;
-		this.coordLongLati = coordLongLati;
-	}
-	
 	public CoordLongLati getCoordLongLati() {
 		return coordLongLati;
 	}
@@ -73,40 +60,15 @@ public class PersonneLocalise {
 		this.coordLongLati = coordLongLati;
 	}
 
+	public boolean equalsPersonne(Personne obj) {
+		if (this == obj)
+			return true;
+		if (super.equals(obj))
+			return true;
+		return false;
+	}
+
 	public Personne getPersonne(){
-		return this.personne;
+		return this;
 	}
-	
-	public Email getEmail(){
-		return personne.getEmail();
-	}
-	
-	public String getNom(){
-		return this.personne.getEtatCivile().getNom();
-	}
-	
-	public String getPrenom(){
-		return personne.getEtatCivile().getPrenom();
-	}
-	
-	public String getNomRue(){
-		return personne.getAdresse().getNomRue();
-	}
-	
-	public Integer getNumRue(){
-		return personne.getAdresse().getNumRue();
-	}
-	
-	public Integer getCodePostal(){
-		return personne.getAdresse().getNumPostal();
-	}
-	
-	public String getVille(){
-		return personne.getAdresse().getNomVille();
-	}
-	
-	public CoordLongLati getCood(){
-		return this.coordLongLati;
-	}
-	
 }

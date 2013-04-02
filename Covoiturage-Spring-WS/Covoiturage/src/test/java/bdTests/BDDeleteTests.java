@@ -48,7 +48,11 @@ public class BDDeleteTests extends TestCase {
 			e.printStackTrace();
 			fail();
 		}
-		bd.deletePersonneInBD(1);
+		try {
+			bd.deletePersonneInBD(1);
+		} catch (ExceptionInternalError e) {
+			fail();
+		}
 		assertEquals(1,bd.getAllPersonne().size());
 		assertTrue(FileComparator.IsTheSameFiles(nomfichierGen, nomfichierFin));
 	}

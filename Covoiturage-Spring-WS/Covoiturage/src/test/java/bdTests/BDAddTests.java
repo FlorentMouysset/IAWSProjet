@@ -53,7 +53,11 @@ public class BDAddTests extends TestCase {
 			fail();
 		}
 		PersonneLocalise p0 = new PersonneLocalise(new Adresse(11, 111, "rue1", "ville1"), new Email("mail1@univ-tlse3.fr"), new EtatCivile("nom1", "prenom1"), new CoordLongLati(1.1, 1.11) );
-		assertEquals(1,(int) bd.addPersonneInBD(p0));
+		try {
+			assertEquals(1,(int) bd.addPersonneInBD(p0));
+		} catch (ExceptionInternalError e) {
+			fail();
+		}
 		assertTrue(FileComparator.IsTheSameFiles(nomfichierGen, nomfichierFin));
 	}
 

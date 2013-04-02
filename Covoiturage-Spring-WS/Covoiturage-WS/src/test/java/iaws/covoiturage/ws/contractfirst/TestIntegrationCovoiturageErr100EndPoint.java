@@ -45,7 +45,11 @@ public class TestIntegrationCovoiturageErr100EndPoint {
 		} catch (ExceptionInternalError e) {
 			e.printStackTrace();
 		}
-    	bd.deletePersonneInBD(5);
+    	try {
+			bd.deletePersonneInBD(5);
+		} catch (ExceptionInternalError e) {
+			e.printStackTrace();
+		}
     }
     
     @Test

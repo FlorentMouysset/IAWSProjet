@@ -57,10 +57,6 @@
 		</xs:sequence>
 	</xs:complexType>
 
-
-
-
-
 	<xs:complexType name="PersonneType">
 		<xs:sequence>
 			<xs:element type="xs:string" name="nom" />
@@ -112,9 +108,5 @@
 			<xs:element type="xs:float" name="rayon" />
 		</xs:sequence>
 	</xs:complexType>
-
-
-
-
 
 </xs:schema>

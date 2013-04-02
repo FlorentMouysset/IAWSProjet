@@ -32,7 +32,7 @@ public class BDPersonnes {
 	private static String bdName = null;
 
 
-	private BDPersonnes(String bdname) {
+	private BDPersonnes(String bdname) throws ExceptionInternalError {
 		bdName = bdname;
 		SAXBuilder sxb = new SAXBuilder();
 		document = null;
@@ -47,7 +47,7 @@ public class BDPersonnes {
 		try {
 			document = sxb.build(file);
 		} catch (Exception e){
-			e.printStackTrace();
+			throw new ExceptionInternalError("Erreur dans la création de la BD");
 		}
 		root = document.getRootElement();
 		personnesLocalisees = new LinkedHashMap<Integer, PersonneLocalise>();
@@ -85,8 +85,9 @@ public class BDPersonnes {
 
 	/**
 	 * en exclusion mutuelle 
+	 * @throws ExceptionInternalError 
 	 * */
-	public synchronized Integer addPersonneInBD(PersonneLocalise personne){
+	public synchronized Integer addPersonneInBD(PersonneLocalise personne) throws ExceptionInternalError{
 		Integer newKey = generateNewKey();
 		personnesLocalisees.put(newKey, personne);//ajout virtuel (à la bd)
 		//Construction des structures XML
@@ -109,37 +110,13 @@ public class BDPersonnes {
 		Element idElem = new Element("id");
 		idElem.addContent(newKey.toString());
 		child.addContent(idElem);
-		
-//		Attribute att1 = new Attribute("xmlns", "http://www.univ-tlse3.fr/Services/Covoiturage");
-	//	Namespace namespace = Namespace.getNamespace("http://www.univ-tlse3.fr/Services/Covoiturage" );
-		//Namespace namespace2 = Namespace.getNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance" );
-		//Namespace namespace3 = Namespace.getNamespace("schemaLocation", "http://www.univ-tlse3.fr/Services/Covoiturage bd.xsd" );
-	//	namespace3.
-				
-	//	System.out.println("##"+root.getNamespacePrefix());
-		//System.out.println("##"+root.getNamespace());
-
-//		
-//		root.addNamespaceDeclaration(namespace2 );
-//		root.addNamespaceDeclaration(namespace3 );
-//		root.addNamespaceDeclaration(namespace);
-//		
-
-//		xmlns="http://www.univ-tlse3.fr/Services/Covoiturage"
-//				xsi:schemaLocation="http://www.univ-tlse3.fr/Services/Covoiturage bd.xsd">
-
-		
-
-		
 		root.addContent(child);
-	//	document.setContent(root);
 		save();
-//		System.out.println("ici save in bd>" + personne);
 		return newKey;
 	}
 
 	
-	public synchronized void deletePersonneInBD(Integer id){
+	public synchronized void deletePersonneInBD(Integer id) throws ExceptionInternalError{
 		personnesLocalisees.remove(id);
 		boolean drap = false;
 		int index = 0;
@@ -163,12 +140,12 @@ public class BDPersonnes {
 	 * Sauve le {@link document} dans le fichier.
 	 * @param file : le nom du fichier
 	 * */
-	private void save() {
+	private void save() throws ExceptionInternalError{
 		try {
 			XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
 			sortie.output(document, new FileOutputStream(bdName));
 		} catch (java.io.IOException e) {
-			e.printStackTrace();//TODO
+			throw new ExceptionInternalError("Erreur dans la création de la BD");
 		}
 	}
 
@@ -208,7 +185,8 @@ public class BDPersonnes {
 		PersonneLocalise pl ;
 		while(i < personnesLocalisees.size() && !isFind){
 			pl = personnesLocalisees.get(i);
-			if(pl.getPersonne().equals(personne)){
+//			if(pl.getPersonne().equals(personne)){
+			if(pl.equalsPersonne(personne)){
 				rest = pl;
 				isFind = true;
 			}

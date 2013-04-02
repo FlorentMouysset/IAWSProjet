@@ -48,10 +48,7 @@ class OSMServices {
 	
 	public static CoordLongLati getCoord(String nomRue, String nomVille, int numRue) throws ExceptionAdresseInvalide, ExceptionInternalError{
 		CoordLongLati coord;
-
-				//build the string request
 		def reqStr = "http://nominatim.openstreetmap.org/search/fr" +"/"+nomVille +  "/" + nomRue + "/" + numRue +"?format=json"
-		
 		reqStr = reqStr.replaceAll(" ", "-")
 		
 		//build the request

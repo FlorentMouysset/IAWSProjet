@@ -34,7 +34,6 @@ public class TestVoisinsCovoiturageNonVideEndPoint {
 
     @Test
     public void covoiturageOkEndpoint() throws Exception {
-       System.out.println("deb test");
     	Source requestPayload = new StreamSource(new ClassPathResource("CovoiturageVoisinsRequest_NonVide.xml").getInputStream() );
         Source responsePayload = new StreamSource(new ClassPathResource("CovoiturageVoisins_NonVide.xml").getInputStream());
         
