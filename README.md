@@ -1,6 +1,6 @@
 IAWSProjet
 ==========
-1) Dans un nouveau dossier "git clonne https://github.com/FlorentMouysset/IAWSProjet.git"
+1) Dans un nouveau dossier "git clonne https://github.com/FlorentMouysset/IAWSProjet.git" <br/>
 2) Avec eclipse importer le projet avec maven
 3) Bien lire le fichier "Important" du module REST-OSM
 
