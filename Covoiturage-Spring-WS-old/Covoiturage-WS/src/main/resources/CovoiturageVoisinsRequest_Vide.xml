@@ -1,6 +1,0 @@
-<VoisinsRequest xmlns="http://www.univ-tlse3.fr/Services/Covoiturage"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.univ-tlse3.fr/Services/Covoiturage Covoiturage.xsd">
-	<idUtil>0</idUtil>
-	<rayon>0.1</rayon>
-</VoisinsRequest>
