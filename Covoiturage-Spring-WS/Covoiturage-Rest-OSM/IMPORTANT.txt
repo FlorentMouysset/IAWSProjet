@@ -1,3 +1,3 @@
-Ajouter le dossier groovy (scr/main) aux sources
-+
-La première fois importé le module REST-OSM comme projet Groovy (clic droit sur le module -> configure-> convert to groovy project)
+1) La première fois importé le module REST-OSM comme projet Groovy 
+	(clic droit sur le module -> configure-> convert to groovy project)
+2) Ajouter le dossier groovy (scr/main) aux sources
