@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:bd="http://www.univ-tlse3.fr/Services/Covoiturage"
+	attributeFormDefault="unqualified" elementFormDefault="qualified"
+	targetNamespace="http://www.univ-tlse3.fr/Services/Covoiturage">
+
+<!-- 	 <xs:element name="PersonnesLocalisees" type="bd:ListePersonnesType"
+		xmlns:bd="http://www.univ-tlse3.fr/Services/Covoiturage"  />
+ --> 
+
+<!-- 
+	<xs:complexType name="ListePersonnesType">
+		<xs:all>
+ -->			<xs:element name="PersonnesLocalisees">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element type="bd:PersonneLocaliseeType" name="personnelocalisee"
+							minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+<!-- 		</xs:all>
+	</xs:complexType>
+ -->
+
+	<xs:complexType name="PersonneLocaliseeType">
+		<xs:sequence>
+			<xs:element name="Personne" type="bd:PersoneType"
+				xmlns:bd="http://www.univ-tlse3.fr/Services/Covoiturage" />
+			<xs:element name="Adresse" type="bd:AdresseType"
+				xmlns:bd="http://www.univ-tlse3.fr/Services/Covoiturage" />
+			<xs:element name="LonLat" type="bd:LatLonType"
+				xmlns:bd="http://www.univ-tlse3.fr/Services/Covoiturage" />
+			<xs:element name="id" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="PersoneType">
+		<xs:sequence>
+			<xs:element type="xs:string" name="nom" />
+			<xs:element type="xs:string" name="prenom" />
+			<xs:element name="email">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[a-zA-Z][a-zA-Z0-9\-\.]*@univ-tlse3.fr" />
+						<!-- commence par une lettre puis éventuelement des chifres ou des 
+							lettres et fini obligatoirement @univ-tlse3.fr -->
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AdresseType">
+		<xs:sequence>
+			<xs:element type="xs:int" name="numrue" />
+			<xs:element type="xs:int" name="numpostal" />
+			<xs:element type="xs:string" name="ville" />
+			<xs:element type="xs:string" name="rue" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="LatLonType">
+		<xs:sequence>
+			<xs:element type="xs:double" name="lat" />
+			<xs:element type="xs:double" name="lon" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+
+
+
+
+</xs:schema>

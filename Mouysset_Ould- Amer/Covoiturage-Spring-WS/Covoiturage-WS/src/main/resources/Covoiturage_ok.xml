@@ -1,0 +1,5 @@
+<Ajout xmlns="http://www.univ-tlse3.fr/Services/Covoiturage"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.univ-tlse3.fr/Services/Covoiturage Covoiturage.xsd"
+	 etat="OK" id="5">
+</Ajout>

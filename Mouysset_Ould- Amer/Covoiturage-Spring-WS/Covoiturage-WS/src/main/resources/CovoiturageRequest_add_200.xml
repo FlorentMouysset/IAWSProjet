@@ -1,0 +1,17 @@
+<AjoutRequest xmlns="http://www.univ-tlse3.fr/Services/Covoiturage"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.univ-tlse3.fr/Services/Covoiturage Covoiturage.xsd">
+	
+	<Personne>
+      <nom>nom5</nom>
+      <prenom>prenom5</prenom>
+      <email>mail5@univ-tlse3.fr</email>
+    </Personne>
+    <Adresse>
+      <numrue>10</numrue>
+      <numpostal>31062</numpostal>
+      <ville>Toulouse</ville>
+      <rue>existe pas</rue>
+    </Adresse>
+	
+</AjoutRequest>
